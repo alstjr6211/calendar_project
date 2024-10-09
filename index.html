@@ -5,13 +5,91 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
-        Calendar
+        Calendar_202302582Yuminseok
     </title>
     <link rel="stylesheet" href="app.css">
 </head>
 
 <body class="light">
 
+
+
+
+
+  
+
+  <div class="calendar-container">
+
+
+
+
+
+    <!-- 검색 영역 -->
+    <div class="search-area">
+      <h4>검색 영역</h4>
+      <form>
+          <div class="form-group">
+              <label for="monthSelect">검색할 달 선택</label>
+              <select class="form-control" id="monthSelect">
+                  <option value="January">1월</option>
+                  <option value="February">2월</option>
+                  <option value="March">3월</option>
+                  <option value="April">4월</option>
+                  <option value="May">5월</option>
+                  <option value="June">6월</option>
+                  <option value="July">7월</option>
+                  <option value="August">8월</option>
+                  <option value="September">9월</option>
+                  <option value="October">10월</option>
+                  <option value="November">11월</option>
+                  <option value="December">12월</option>
+              </select>
+          </div>
+          <div class="form-group">
+              <label for="keywordInput">검색 키워드 입력</label>
+              <input type="text" class="form-control" id="keywordInput" placeholder="키워드를 입력하세요">
+          </div>
+          <div class="form-group">
+              <label>카테고리 선택</label>
+              <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="Meeting" id="eventType1">
+                  <label class="form-check-label" for="eventType1">
+                      전공
+                  </label>
+              </div>
+              <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="Workshop" id="eventType2">
+                  <label class="form-check-label" for="eventType2">
+                      교양
+                  </label>
+              </div>
+              <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="Conference" id="eventType3">
+                  <label class="form-check-label" for="eventType3">
+                      과제
+                  </label>
+              </div>
+              <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="Webinar" id="eventType4">
+                  <label class="form-check-label" for="eventType4">
+                      공부
+                  </label>
+              </div>
+          </div>
+
+          <div class="search-button-container">
+              <button type="submit" class="search-button">검색</button>
+          </div>
+      </form>
+  </div>
+
+
+
+
+
+
+
+  <!-- 달력 -->
     <div class="calendar">
         <div class="calendar-header">
             <span class="month-picker" id="month-picker">February</span>
@@ -47,6 +125,60 @@
         </div>
         <div class="month-list"></div>
     </div>
+
+    
+
+
+
+
+    <!-- 결과 영역 -->
+     <!--으아악 class 헷갈려ㅕㅕㅕㅕㅕㅕ -->
+
+    <div class="results-area"> 
+      <h4>결과 영역</h4>
+
+      <div class="form-group">
+        <label for="listSelect">목록 선택</label>
+        <select class="form-control" id="listSelect">
+            <option value="todo">할 일 목록</option>
+            <option value="important">중요 목록</option>
+        </select>
+      </div>
+
+      <div class="results-wrapper">
+          <div class="results-area-todolist" id="todolistArea">
+              <h6>할 일 목록</h6>
+              <div class="tile">
+                  <h6>할 일1</h6>
+              </div>
+              <div class="tile">
+                  <h6>할 일 2</h6>
+              </div>
+              <div class="tile">
+                  <h6>할 일 3</h6>
+              </div>
+          </div>
+
+          <div class="results-area-finishedlist" id = "finishedlistArea">
+              <h6>한 일 목록</h6>
+              <div class="tile">
+                  <h6>한 일 1</h6>
+              </div>
+              <div class="tile">
+                  <h6>한 일 2</h6>
+              </div>
+              <div class="tile">
+                  <h6>한 일 3</h6>
+              </div>
+          </div>
+      </div>
+    </div>
+
+
+  </div> 
+
+    
+
 
     <script src="app.js"></script>
 </body>
