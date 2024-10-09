@@ -16,7 +16,12 @@
 
   --shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 
-  --font-family: cursive;
+  --classify-color1: #ffff52;
+  --classify-color2: #ff6bf8;
+  --classify-color3: #76ffca;
+  --classify-color4: #b3b3ff;
+
+  --grid-color: #d3d3d3;
 }
 
 .dark {
@@ -43,7 +48,7 @@
 
 html,
 body {
-  height: 100vh;
+  height: 100%;
   display: grid;
   place-items: center;
   font-family: var(--font-family);
@@ -53,15 +58,14 @@ body {
 .calendar-container {
   display: grid;
   grid-template-areas:
-    "search"
-    "results"
-    "calendar";
+      "search"
+      "results"
+      "calendar";
   grid-gap: 20px;
   width: 100%;
   max-width: 1200px;
   padding: 10px;
 }
-
 
 .search-area,
 .results-area {
@@ -82,13 +86,11 @@ body {
   margin-bottom: 15px;
 }
 
-
 .form-group label {
   display: block;
   margin-bottom: 5px;
   color: var(--color-txt);
 }
-
 
 .form-control {
   width: 100%;
@@ -98,7 +100,6 @@ body {
   background-color: var(--bg-main);
   color: var(--color-txt);
 }
-
 
 .form-check {
   margin-bottom: 10px;
@@ -157,6 +158,7 @@ body {
 .calendar {
   grid-area: calendar;
   height: max-content;
+  border: 1px solid var(--grid-color);
   width: 100%;
   background-color: var(--bg-main);
   border-radius: 30px;
@@ -167,6 +169,12 @@ body {
 
 .light .calendar {
   box-shadow: var(--shadow);
+}
+
+.calendar-days div.selected {
+  background-color: var(--blue);
+  color: var(--white);
+  border-radius: 50%;
 }
 
 .calendar-header {
@@ -197,6 +205,7 @@ body {
 }
 
 .calendar-days {
+  border: 1px solid var(--grid-color);
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   gap: 2px;
@@ -217,6 +226,7 @@ body {
 
 .calendar-days div span {
   position: absolute;
+  pointer-events: none;
 }
 
 .calendar-days div:hover span {
@@ -415,66 +425,155 @@ body {
 /* 993px 이상 */
 @media (min-width: 993px) {
   .calendar-container {
-    grid-template-areas: 
-      "search calendar results";
-    grid-template-columns: 1fr 2fr 1fr;
+      grid-template-areas: 
+          "search calendar results";
+      grid-template-columns: 1fr 2fr 1fr;
   }
 
   .search-area {
-    grid-area: search;
+      grid-area: search;
   }
 
   .calendar {
-    grid-area: calendar;
-    width: 600px;
+      grid-area: calendar;
+      width: 600px;
   }
 
   .results-area {
-    grid-area: results;
+      grid-area: results;
   }
 }
 
 /* 768px 이상 993px 이하 */
 @media (min-width: 768px) and (max-width: 992px) {
   .calendar-container {
-    grid-template-areas: 
-      "search results"
-      "calendar calendar";
-    grid-template-columns: 1fr 1fr;
+      grid-template-areas: 
+          "search results"
+          "calendar calendar";
+      grid-template-columns: 1fr 1fr;
   }
 
   .search-area {
-    grid-area: search;
+      grid-area: search;
   }
 
   .results-area {
-    grid-area: results;
+      grid-area: results;
   }
 
   .calendar {
-    grid-area: calendar;
+      grid-area: calendar;
   }
 }
+
 /* 576px 이상 768px 이하 */
 @media (min-width: 576px) and (max-width: 767px) {
   .calendar-container {
-    grid-template-areas: 
-      "search"
-      "results"
-      "calendar";
-    grid-template-columns: 1fr;
+      grid-template-areas: 
+          "search"
+          "results"
+          "calendar";
+      grid-template-columns: 1fr;
   }
 
   .search-area {
-    grid-area: search;
+      grid-area: search;
   }
 
   .results-area {
-    grid-area: results;
+      grid-area: results;
   }
 
   .calendar {
-    grid-area: calendar;
+      grid-area: calendar;
   }
 }
 
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+#modal_planSave {
+  width: 320px;
+  padding: 30px;
+  border: 2px ridge var(--dark-second);
+  border-radius: 10px;
+  background-color: var(--bg-main);
+  color: var(--color-txt);
+  position: relative;
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-content label {
+  margin-top: 10px;
+}
+
+.modal-content input,
+.modal-content textarea,
+.modal-content select {
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
+
+.modal-save-button,
+.modal-save-cancel {
+  margin-right: 10px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.modal-save-button {
+  background-color: var(--blue);
+  color: var(--white);
+}
+
+.modal-save-button:hover {
+  background-color: darkblue;
+}
+
+.modal-save-cancel {
+  background-color: var(--bg-second);
+  color: var(--color-txt);
+}
+
+.modal-save-cancel:hover {
+  background-color: var(--color-hover);
+}
+
+.event-line {
+  width: 100%;
+  height: 2px;
+  background-color: red;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+/* to do list tile에 들어갈 star */
+.star {
+  background: none;
+  border: none;
+  font-size: 1.2em;
+  cursor: pointer;
+  color: inherit;
+}
+
+.star:hover {
+  color: gold;
+}
